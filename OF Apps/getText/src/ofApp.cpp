@@ -38,22 +38,8 @@ void ofApp::setup(){
         delete [] wide;
         
     } else {
-        
-        cout << "random\n";
-        
         is_random = true;
-        
-        size = RAND_BUFFER_SIZE;
-        
-        buffer_ptr = new char[RAND_BUFFER_SIZE];
-        
-        size_t i = RAND_BUFFER_SIZE;
-        while (i--) {
-            do {
-            buffer_ptr[i] = std::rand();
-            }
-            while (buffer_ptr[i] == 0);
-        }
+        size = 1;
     }
     
     int i = 0;
@@ -70,7 +56,7 @@ void ofApp::setup(){
         int block = ((size > MAX_BUFFER) && (MAX_BUFFER > 0)) ? MAX_BUFFER : size;
         outputFile.open( path.c_str(), ios::binary);
         if (outputFile.is_open()) {
-            outputFile.write( &buffer_ptr[i], block);
+            if (!is_random) outputFile.write( &buffer_ptr[i], block);
             outputFile.put(0);
             outputFile.close();
         }
@@ -78,8 +64,6 @@ void ofApp::setup(){
         ofSleepMillis(10);
     }
 #endif
-    
-    if (is_random) delete [] buffer_ptr;
     
     ofExit();
     
