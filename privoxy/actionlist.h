@@ -121,10 +121,11 @@ DEFINE_CGI_PARAM_RADIO   ("set-image-blocker",          ACTION_IMAGE_BLOCKER,   
 DEFINE_CGI_PARAM_RADIO   ("set-image-blocker",          ACTION_IMAGE_BLOCKER,   ACTION_STRING_IMAGE_BLOCKER, "blank", 0)
 DEFINE_CGI_PARAM_CUSTOM  ("set-image-blocker",          ACTION_IMAGE_BLOCKER,   ACTION_STRING_IMAGE_BLOCKER,  CGI_PREFIX "send-banner?type=pattern")
 
-/* MPF */
+/* MPF Start */
 
 DEFINE_ACTION_BOOL       ("mpf-do-not-get",       ACTION_DO_NOT_GET)
 
+/* MPF End */
 
 #if DEFINE_ACTION_ALIAS
 

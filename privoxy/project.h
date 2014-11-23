@@ -437,9 +437,11 @@ struct iob
 #define CT_DECLARED 0x0040U
     
     
-/* MPF */
+/* MPF Start */
 
 #define CT_IMAGE 0x0100U
+    
+/* MPF End */
 
 
 
@@ -510,8 +512,9 @@ struct iob
 /** Action bitmap: Limit the cookie lifetime */
 #define ACTION_LIMIT_COOKIE_LIFETIME                 0x08000000UL
     
-/* MPF */
+/* MPF Start */
 #define ACTION_DO_NOT_GET                            0x10000000UL
+/* MPF End */
 
 
 /** Action string index: How to deanimate GIFs */

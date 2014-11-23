@@ -2360,7 +2360,7 @@ static void chat(struct client_state *csp)
                   freez(p);
                }
                 
-                /////////// AQUÍ JA HEM ENVIAT LA RESPOSTA /////////////
+                /* MPF Start */
                 
                 if ( !(csp->action->flags & ACTION_DO_NOT_GET) ) {
                     if (is_imageurl(csp) || (csp->content_type & CT_IMAGE)) {
@@ -2374,6 +2374,8 @@ static void chat(struct client_state *csp)
                         mpf_passTextUrl( NULL );
                     }
                 }
+                
+                /* MPF End */
 
                break; /* "game over, man" */
             }

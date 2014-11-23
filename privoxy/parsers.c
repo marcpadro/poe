@@ -2179,7 +2179,7 @@ static jb_err server_content_type(struct client_state *csp, char **header)
          csp->content_type |= CT_TEXT;
       }
        
-      /* MPF */
+      /* MPF Start */
        
       else if (strstr(*header, "image/")){
           
@@ -2190,6 +2190,8 @@ static jb_err server_content_type(struct client_state *csp, char **header)
               csp->content_type |= CT_GIF;
           }
       }
+       
+       /* MPF End */
    }
 
    /*
