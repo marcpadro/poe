@@ -1,0 +1,235 @@
+@import url(http://fonts.googleapis.com/css?family=Exo:200);
+
+@-webkit-keyframes hide {
+    0% {
+        right: 0px;
+        opacity: 1;
+    }
+    25% {
+        right: 0px;
+        opacity: 1;
+    }
+    75% {
+        right: -129px;
+    }
+    100% {
+        right: -129px;
+        opacity: 0.3;
+    }
+}
+
+@keyframes hide {
+    0% {
+        right: 0px;
+        opacity: 1;
+    }
+    25% {
+        right: 0px;
+        opacity: 1;
+    }
+    75% {
+        right: -129px;
+    }
+    100% {
+        right: -129px;
+        opacity: 0.3;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#p01mpf {
+   
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    z-index: 9999;
+    
+}
+
+#p01mpf_main {
+    background-color: #ffcd00;
+    overflow: hidden;
+    
+    position: absolute;
+    right: -129px;
+    top:40px;
+    padding: 5px;
+    opacity: 0.3;
+    
+    min-width:129px;
+    width: 129px;
+    height:61px;
+    box-shadow: 1px 1px 3px, inset 1px 1px 0 rgba(255, 255, 255, 0.7);
+    
+    -webkit-transition: right 1s, opacity 2s, width 1s, height 1s;
+    transition: right 1s, opacity 2s, width 1s, height 1s;
+    
+    -webkit-animation: hide 2.5s;
+    -webkit-animation-fill-mode: backwards;
+    
+    animation: hide 2.5s;
+    animation-fill-mode: backwards;
+}
+
+#p01mpf_more:checked ~ #p01mpf_main {
+    width:291px;
+    height:171px;
+    right: -291px;
+    -webkit-transition: right 1s, opacity 2s, width 1s, height 1s;
+    transition: right 1s, opacity 2s, width 1s, height 1s;
+}
+
+#p01mpf_main:hover, #p01mpf_more:checked ~ #p01mpf_main:hover {
+    right: 0;
+    opacity: 1;
+    -webkit-transition: right 1s, width 1s, height 1s;
+    transition: right 1s, width 1s, height 1s;
+    
+    /*
+    -webkit-animation: none;
+    animation: none;
+    */
+}
+
+#p01mpf_h {
+    margin: 5px;
+}
+
+#p01mpf_main .through {
+    color: #333333;
+    text-decoration: none;
+    font-family: 'Exo', helvetica, geneva, sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 200;
+    margin: 0;
+    padding: 0;
+}
+
+#p01mpf_main .proxy {
+    color: #333333;
+    text-decoration: none;
+    font-family: 'Exo', helvetica, geneva, sans-serif;
+    display: block;
+    font-size: 18px;
+    font-weight: 200;
+    margin: 0;
+    padding: 0;
+}
+
+#p01mpf_main .proxy:hover {
+    color: #333333;
+    text-decoration: none;
+    font-family: 'Exo', helvetica, geneva, sans-serif;
+    display: block;
+    font-size: 1.5em;
+    text-decoration: underline;
+    font-size: 18px;
+    font-weight: 200;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+#p01mpf_close {
+    visibility: hidden;
+    position: absolute;
+}
+
+label[for=p01mpf_close] {
+    color: #333333;
+    text-decoration: none;
+    font-family: 'Exo', helvetica, geneva, sans-serif;
+    font-size: 12px;
+    font-weight: 200;
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    top: 3px;
+    right: 3px;
+    cursor: pointer;
+}
+
+label[for=p01mpf_close]:hover {
+    color: #ffffff;
+}
+
+#p01mpf_close:checked ~ #p01mpf_main, #p01mpf_close:checked {
+    display: none;
+}
+
+
+label[for=p01mpf_more] {
+    color: #333333;
+    text-decoration: none;
+    font-family: 'Exo', helvetica, geneva, sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+    margin: 0 0 0 5px;
+    padding: 0;
+    display: block;
+    width: 0.6em;
+    line-height: 0.6em;
+    cursor: pointer;
+}
+
+label[for=p01mpf_more]:hover {
+    color: #ffffff;
+}
+
+#p01mpf_more_on {
+    display: none;
+}
+
+#p01mpf_more:checked ~ #p01mpf_main #p01mpf_more_on {
+    display: block;
+}
+
+#p01mpf_more:checked ~ #p01mpf_main #p01mpf_more_off {
+    display: none;
+}
+
+#p01mpf_more_content {
+    display: none;
+    width:290px;
+}
+
+#p01mpf_more:checked ~ #p01mpf_main #p01mpf_more_content {
+    display: block;
+}
+
+#p01mpf_image, #p01mpf_text {
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+}
+
+#p01mpf_text {
+    width: 190px;
+    color: #333333;
+    font-family: 'Exo', helvetica, geneva, sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    
+    white-space: pre-wrap;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+#p01mpf_text * {
+    margin: 0;
+    padding: 0;
+}

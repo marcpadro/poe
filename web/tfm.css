@@ -1,0 +1,204 @@
+@import url(http://fonts.googleapis.com/css?family=Exo:200);
+@import url(http://fonts.googleapis.com/css?family=Merriweather:400,400italic,700italic,700);
+
+
+html {
+    color: #333333;
+    background-color: #f2f2f2;
+    min-height: 100%;
+    background: #ffffff
+    linear-gradient(90deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,0.1) 100%);
+    font-family: 'Exo', serif;
+    font-weight: 200;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 200;
+}
+p {
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+    line-height: 1.5em;
+}
+
+a {
+    color: #0099bb;
+}
+
+a:hover {
+    color: black;
+}
+
+nav {
+    
+}
+nav a {
+    margin: 10px;
+    display: inline-block;
+}
+
+#missatge {
+    font-family: 'Merriweather', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0 20px;
+}
+
+#missatge.correct {
+    color: #00bb88;
+}
+
+#missatge.problem {
+    color: #ff0033;
+}
+
+span.marker {
+    background-color: #ffcd00;
+    line-height: 1em;
+    display: inline-block;
+}
+
+.section {
+    position: relative;
+    margin: 60px;
+}
+.section header {
+    margin:0;
+    position: absolute;
+    
+    -ms-transform-origin: right bottom;
+    -webkit-transform-origin: right bottom;
+    -moz-transform-origin: right bottom;
+    transform-origin: right bottom;
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    
+    height: 1.3em;
+    left:-230px;
+    top:calc(-1.3em + 5px);
+    text-align: right;
+    width: 200px;
+    
+}
+
+.section-title {
+    line-height: 1.3em;
+    margin: 0;
+    display: inline-block;
+    border-bottom: 1px solid;
+}
+
+body {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0 20px 0 60px;
+}
+
+
+#fitxa {
+    max-width: 570px;
+    min-height: 340px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+#fitxa h1 {
+    margin: 20px;
+}
+
+#fitxa img, #text, .template_form_shower {
+    display: inline-block;
+    vertical-align: top;
+    margin: 20px;
+}
+
+#text {
+    width: 320px;
+    font-family: 'Exo', serif;
+    font-weight: 200;
+    
+    white-space: pre-wrap;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    
+}
+
+img {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.template_form_shower {
+    position: relative;
+}
+.template_form_shower label {
+    font-size: 12px;
+    cursor: pointer;
+}
+
+
+input[type=radio].shower:checked + label.shower {
+    display: none;
+}
+
+input[type=radio].hider + label.hider {
+    display: none;
+}
+
+input[type=radio].show_image_form:checked ~ label.hide_image_form,
+input[type=radio].show_text_form:checked ~ label.hide_text_form{
+    display: initial;
+}
+
+
+#image_form, #text_form {
+    display: none;
+}
+
+input[type=radio].show_image_form:checked ~ #image_form,
+input[type=radio].show_text_form:checked ~ #text_form {
+    display: block;
+}
+
+.template_form {
+    position: absolute;
+    padding: 10px;
+    background-color: #ffcd00;
+    z-index: 9999;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.3), 0px 0px 1px rgba(0,0,0,0.2), inset 0px 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+#text_form_shower {
+    float: right;
+}
+
+#text_form {
+    right: 0;
+}
+
+#avis {
+    background-color: red;
+    padding: 10px;
+    color: white;
+    float: right;
+    font-size: 13px;
+    -ms-transform-origin: top left;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    transform-origin: top left;
+    -ms-transform: rotate(7deg);
+    -webkit-transform: rotate(7deg); 
+    -moz-transform: rotate(7deg);
+    transform: rotate(7deg);
+}
+
+#avis span {
+    font-size: 16px;
+}
