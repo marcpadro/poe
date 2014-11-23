@@ -15,6 +15,6 @@
 
 #define RAND_BUFFER_SIZE 60000
 
-#define SAVE_DIR "/users/cramtnt/documents/DIGEST_TEST/"
+#define SAVE_DIR "/var/tmp/DIGEST/image_buffer/"
 
 #endif

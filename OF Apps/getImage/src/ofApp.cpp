@@ -36,18 +36,9 @@ void ofApp::setup(){
         
     } else {
         
-        cout << "random\n";
-        
         is_random = true;
         
-        size = RAND_BUFFER_SIZE;
-        
-        pix_p = new unsigned char[RAND_BUFFER_SIZE];
-        
-        int i = RAND_BUFFER_SIZE;
-        while (i--) {
-            pix_p[i] = std::rand();
-        }
+        size = 1;
         
     }
     
@@ -64,16 +55,14 @@ void ofApp::setup(){
         int block = ((size > MAX_BUFFER) && (MAX_BUFFER > 0)) ? MAX_BUFFER : size;
         outputFile.open( path.c_str(), ios::binary);
         if (outputFile.is_open()) {
-            outputFile.write( (char*) pix_p, block);
+            if (!is_random) outputFile.write( (char*) pix_p, block);
+            else outputFile.put(0);
             outputFile.close();
         }
 #if (MAX_BUFFER > 0)
         ofSleepMillis(10);
     }
 #endif
-    
-    
-    delete [] pix_p;
     
     ofExit();
 
