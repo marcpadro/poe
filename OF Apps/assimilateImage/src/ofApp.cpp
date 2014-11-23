@@ -18,7 +18,7 @@ void ofApp::setup(){
     result_dir.open( RESULT_DIR );
     template_dir.open( TEMPLATE_DIR );
     queue_dir.open( QUEUE_DIR );
-
+    
     
     if (!dir.exists() || !result_dir.exists() || !template_dir.exists() || !queue_dir.exists() ) ofExit();
     
@@ -44,7 +44,7 @@ void ofApp::setup(){
 #if FRAME_RATE > 0
     ofSetFrameRate(FRAME_RATE);
 #endif
-
+    
 }
 
 //--------------------------------------------------------------
@@ -93,7 +93,7 @@ void ofApp::update(){
 #endif
     }
     
-
+    
 }
 
 //--------------------------------------------------------------
@@ -114,12 +114,12 @@ void ofApp::updateTemplate() {
     if (!loadTemplate(TEMPLATE_DIR + newTemplate)) return;
     
     
-     if (templateFile != "" ) ofFile::removeFile( TEMPLATE_DIR + templateFile );
-     
-     template_dir.open( TEMPLATE_DIR );
-     if (!template_dir.exists()) ofExit();
+    if (templateFile != "" ) ofFile::removeFile( TEMPLATE_DIR + templateFile );
     
-        
+    template_dir.open( TEMPLATE_DIR );
+    if (!template_dir.exists()) ofExit();
+    
+    
     templateFile = newTemplate;
 }
 
@@ -155,10 +155,21 @@ void ofApp::feed(unsigned char* result) {
     int i = remaining - 3;
     size_t pix_pos;
     size_t pix_index;
+    unsigned char pix_value[3];
     
     if (is_random) {
         
-        pix_index = std::rand() % dataset.pix_num;
+        pix_index = rand_pos;
+        pix_value[0] = rand_value[0];
+        pix_value[1] = rand_value[1];
+        pix_value[2] = rand_value[2];
+        
+        pix_index += (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
+        pix_index += ((std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2) * templateImagePixels.getWidth();
+        
+        rand_value[0] += (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+        rand_value[1] += (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+        rand_value[2] += (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
         
     }
     else {
@@ -170,13 +181,17 @@ void ofApp::feed(unsigned char* result) {
         kdtree.findNeighbors(resultSet, &data_ptr[i], nanoflann::SearchParams(10));
         
         dataset.remove(pix_index);
+        
+        pix_value[0] = data_ptr[i];
+        pix_value[1] = data_ptr[i+1];
+        pix_value[2] = data_ptr[i+2];
     }
     
     pix_pos = pix_index * 3;
     
-    result[pix_pos] = data_ptr[i];
-    result[pix_pos+1] = data_ptr[i+1];
-    result[pix_pos+2] = data_ptr[i+2];
+    result[pix_pos] = pix_value[0];
+    result[pix_pos+1] = pix_value[1];
+    result[pix_pos+2] = pix_value[2];
     
     remaining = i;
     to_feed--;
@@ -187,7 +202,7 @@ void ofApp::feed(unsigned char* result) {
 //--------------------------------------------------------------
 int ofApp::getBuffer(){
     
-    imageData.clear();
+    size_t size;
     
     string fileToOpen = getLatestFile(dir, "ebb");
     
@@ -197,21 +212,39 @@ int ofApp::getBuffer(){
         
         string filePath = DIR_PATH + fileToOpen;
         
-        imageData = ofBufferFromFile(filePath);
-        
-        data_ptr = (unsigned char*)imageData.getBinaryBuffer();
-        
-        cout << "buffer size: " << imageData.size() << "\n";
+        if ( fileToOpen.substr(fileToOpen.length() - 5) == "R.ebb" ) {
+            
+            size = RAND_SIZE;
+            is_random = true;
+            rand_pos = std::rand() % dataset.pix_num;
+            size_t i = rand_pos * 3;
+            rand_value[0] = dataset.imageData[i];
+            rand_value[1] = dataset.imageData[i+1];
+            rand_value[2] = dataset.imageData[i+2];
+            
+        }
+        else {
+            
+            imageData.clear();
+            
+            imageData = ofBufferFromFile(filePath);
+            
+            data_ptr = (unsigned char*)imageData.getBinaryBuffer();
+            
+            cout << "buffer size: " << imageData.size() << "\n";
+            
+            size = (imageData.size() / 3) * 3;
+            
+            is_random = false;
+            
+        }
         
         ofFile::removeFile(filePath);
         
         dir.open(DIR_PATH);
         if (!dir.exists()) ofExit();
         
-        if ( fileToOpen.substr(fileToOpen.length() - 5) == "R.ebb" ) is_random = true;
-        else is_random = false;
-        
-        return (imageData.size() / 3) * 3;
+        return size;
         
     }
     
@@ -316,45 +349,45 @@ bool ofApp::deletePrevious( ofDirectory& directory, string filename) {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+    
 }

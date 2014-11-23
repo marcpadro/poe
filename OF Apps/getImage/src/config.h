@@ -13,8 +13,6 @@
 
 #define MAX_SIZE 180000
 
-#define RAND_BUFFER_SIZE 60000
-
 #define SAVE_DIR "/var/tmp/DIGEST/image_buffer/"
 
 #endif

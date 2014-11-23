@@ -23,6 +23,8 @@ void ofApp::setup(){
     
     deletePrevious(template_dir, templateFile);
     
+    std::srand((unsigned int)ofGetSystemTimeMicros());
+    
     
 #if ( FRAME_RATE > 0 )
     ofSetFrameRate(FRAME_RATE);
@@ -124,32 +126,44 @@ int ofApp::getBuffer() {
     
     if (fileToOpen != "") {
         
+        size_t numChars;
+        
         cout << "file to open: " << fileToOpen << "\n";
         
         string filePath = DIR_PATH + fileToOpen;
         
-        textData.clear();
         
-        textData = ofBufferFromFile(filePath);
+        if ( fileToOpen.substr(fileToOpen.length() - 5) == "R.ebb" ) {
+            
+            numChars = RAND_SIZE;
+            is_random = true;
+            rand_pos = std::rand() % template_length;
+            rand_value = templateText[rand_pos];
+            
+        }
+        else {
         
-        size_t size = textData.size();
-        
-        cout << "buffer size: " << size << "\n";
-        
-        delete [] wide_data;
-        
-        wide_data = new unsigned long [size];
-        
-        size_t numChars = charToWchar(wide_data, textData.getBinaryBuffer());
+            textData.clear();
+            delete [] wide_data;
+            
+            textData = ofBufferFromFile(filePath);
+            
+            size_t size = textData.size();
+            
+            cout << "buffer size: " << size << "\n";
+            
+            wide_data = new unsigned long [size];
+            
+            numChars = charToWchar(wide_data, textData.getBinaryBuffer());
+            
+            is_random = false;
+        }
         
         
         ofFile::removeFile(filePath);
         
         dir.open(DIR_PATH);
         if (!dir.exists()) ofExit();
-        
-        if ( fileToOpen.substr(fileToOpen.length() - 5) == "R.ebb" ) is_random = true;
-        else is_random = false;
         
         return numChars;
         
@@ -261,15 +275,22 @@ void ofApp::feed(){
     remaining--;
     
     
-    unsigned long current = wide_data[remaining];
+    unsigned long current;
     
     size_t dest = 0;
     
     if (is_random) {
-        dest = std::rand() % template_length;
+        
+        dest = rand_pos;
+        current = rand_value;
+        
+        rand_pos += (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
+        rand_value += (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
     }
     else {
-    
+        
+        current = wide_data[remaining];
+        
         long long closestDistance =  compareDistances(templateText[0], resultText[0], current);
         long long currentDistance;
         

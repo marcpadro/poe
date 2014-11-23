@@ -11,19 +11,25 @@
 
 #define MAX_TO_FEED 20
 
+#define RAND_SIZE 20
+
+#define RAND_POS_RANGE 4
+
+#define RAND_VALUE_RANGE 6
+
 #define TEXT_SIZE 256
 
-#define DIR_PATH "/users/cramtnt/documents/DIGEST_TEST/text/"
+#define DIR_PATH "/var/tmp/DIGEST/text_buffer/"
 
-#define RESULT_DIR "/users/cramtnt/documents/DIGEST_TEST/text_result/"
+#define RESULT_DIR "/var/tmp/DIGEST/text_result/"
 
-#define TEMPLATE_DIR "/users/cramtnt/documents/DIGEST_TEST/text_template/"
+#define TEMPLATE_DIR "/var/tmp/DIGEST/text_template/"
 
-#define QUEUE_DIR "/users/cramtnt/documents/DIGEST_TEST/text_queue/"
+#define QUEUE_DIR "/var/tmp/DIGEST/text_queue/"
 
 #define FRAME_RATE 1
 
-#define UPDATE_TEMPLATE 3
+#define UPDATE_TEMPLATE 5
 
 #define SAVE_RESULT 0
 

@@ -13,13 +13,19 @@
 
 #define DATASET_RESET 3000
 
-#define DIR_PATH "/users/cramtnt/documents/DIGEST_TEST/"
+#define RAND_SIZE 1500
 
-#define RESULT_DIR "/users/cramtnt/documents/DIGEST_TEST/image_result/"
+#define RAND_POS_RANGE 4
 
-#define QUEUE_DIR "/users/cramtnt/documents/DIGEST_TEST/image_queue/"
+#define RAND_VALUE_RANGE 10
 
-#define TEMPLATE_DIR "/users/cramtnt/documents/DIGEST_TEST/image_template/"
+#define DIR_PATH "/var/tmp/DIGEST/image_buffer/"
+
+#define RESULT_DIR "/var/tmp/DIGEST/image_result/"
+
+#define QUEUE_DIR "/var/tmp/DIGEST/image_queue/"
+
+#define TEMPLATE_DIR "/var/tmp/DIGEST/image_template/"
 
 #define FRAME_RATE 0
 

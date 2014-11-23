@@ -68,4 +68,7 @@ class ofApp : public ofBaseApp{
     bool there_was_buffer = false;
     bool is_random = false;
     
+    size_t rand_pos;
+    unsigned char rand_value[3];
+    
 };
