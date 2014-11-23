@@ -1,13 +1,9 @@
 <?php
 
-//error_reporting(-1);
-//ini_set('display_errors', 'On');
-
 include_once('config.php');
 
 $message = '';
 $through_proxy = isset($_SERVER['HTTP_X_P01MPF']);
-//$through_proxy = true;
 
 if ( isset($_POST['submit_image']) && $through_proxy ) {
     
@@ -294,6 +290,9 @@ function get_image($path) {
             A pesar de todo esto, en ningún caso registro información sobre la
             navegación de los usuarios.
         </p>
+	<p>
+	    Puedes consultar el código fuente del proyecto en <a href="https://github.com/marcpadro/poe">GitHub</a>.
+	</p>
     </section>
     <section id="creditos" class="section">
         <header>
