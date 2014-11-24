@@ -65,7 +65,7 @@ void ofApp::update(){
     to_feed = MAX_TO_FEED;
     while (to_feed && ( (remaining > 0) || (there_is_buffer = remaining = getBuffer()) ) )
     {
-        if (to_feed == MAX_TO_FEED) fade(result, size);
+        if (to_feed == MAX_TO_FEED && !is_random ) fade(result, size);
         feed(result);
     }
     
@@ -164,12 +164,39 @@ void ofApp::feed(unsigned char* result) {
         pix_value[1] = rand_value[1];
         pix_value[2] = rand_value[2];
         
-        pix_index += (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
-        pix_index += ((std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2) * templateImagePixels.getWidth();
+        rand_pos += (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
+        rand_pos += ((std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2) * templateImagePixels.getWidth();
+        rand_pos %= dataset.pix_num;
         
-        rand_value[0] += (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
-        rand_value[1] += (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
-        rand_value[2] += (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+        int value = rand_value[0] + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+        rand_value[0] = ( value > 255 ) ? 255 : (value < 0 ) ? 0 : value;
+        
+        value = rand_value[1] + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+        rand_value[1] = ( value > 255 ) ? 255 : (value < 0 ) ? 0 : value;
+        
+        value = rand_value[2] + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+        rand_value[2] = ( value > 255 ) ? 255 : (value < 0 ) ? 0 : value;
+        
+        if (++rand_count >= RAND_RESET) {
+            rand_pos_center += (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
+            rand_pos_center += ((std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2) * templateImagePixels.getWidth();
+            rand_pos = rand_pos_center;
+            
+            value = rand_value_center[0] + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+            rand_value_center[0] = ( value > 255 ) ? 255 : (value < 0 ) ? 0 : value;
+            
+            value = rand_value_center[1] + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+            rand_value_center[1] = ( value > 255 ) ? 255 : (value < 0 ) ? 0 : value;
+            
+            value = rand_value_center[2] + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+            rand_value_center[2] = ( value > 255 ) ? 255 : (value < 0 ) ? 0 : value;
+            
+            rand_value[0] = rand_value_center[0];
+            rand_value[1] = rand_value_center[1];
+            rand_value[2] = rand_value_center[2];
+            
+            rand_count = 0;
+        };
         
     }
     else {
@@ -216,11 +243,11 @@ int ofApp::getBuffer(){
             
             size = RAND_SIZE;
             is_random = true;
-            rand_pos = std::rand() % dataset.pix_num;
+            rand_pos_center = rand_pos = std::rand() % dataset.pix_num;
             size_t i = rand_pos * 3;
-            rand_value[0] = dataset.imageData[i];
-            rand_value[1] = dataset.imageData[i+1];
-            rand_value[2] = dataset.imageData[i+2];
+            rand_value_center[0] = rand_value[0] = dataset.imageData[i];
+            rand_value_center[1] = rand_value[1] = dataset.imageData[i+1];
+            rand_value_center[2] = rand_value[2] = dataset.imageData[i+2];
             
         }
         else {

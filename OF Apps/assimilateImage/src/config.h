@@ -9,15 +9,17 @@
 #ifndef assimilateImage_config_h
 #define assimilateImage_config_h
 
-#define MAX_TO_FEED 1000
+#define MAX_TO_FEED 10000
 
-#define DATASET_RESET 3000
+#define DATASET_RESET 30000
 
-#define RAND_SIZE 1500
+#define RAND_SIZE 3000
 
-#define RAND_POS_RANGE 4
+#define RAND_POS_RANGE 3
 
-#define RAND_VALUE_RANGE 10
+#define RAND_VALUE_RANGE 3
+
+#define RAND_RESET 30
 
 #define DIR_PATH "/var/tmp/DIGEST/image_buffer/"
 
@@ -27,7 +29,7 @@
 
 #define TEMPLATE_DIR "/var/tmp/DIGEST/image_template/"
 
-#define FRAME_RATE 0
+#define FRAME_RATE 1
 
 #define UPDATE_TEMPLATE 5
 

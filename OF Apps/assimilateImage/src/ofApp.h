@@ -69,6 +69,9 @@ class ofApp : public ofBaseApp{
     bool is_random = false;
     
     size_t rand_pos;
+    size_t rand_pos_center;
+    int rand_count = 0;
     unsigned char rand_value[3];
+    unsigned char rand_value_center[3];
     
 };

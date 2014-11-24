@@ -9,13 +9,13 @@
 #ifndef assimilateText_config_h
 #define assimilateText_config_h
 
-#define MAX_TO_FEED 20
+#define MAX_TO_FEED 200
 
-#define RAND_SIZE 20
+#define RAND_SIZE 40
 
 #define RAND_POS_RANGE 4
 
-#define RAND_VALUE_RANGE 6
+#define RAND_VALUE_RANGE 2
 
 #define TEXT_SIZE 256
 
