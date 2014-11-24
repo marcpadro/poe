@@ -22,6 +22,11 @@ p {
     line-height: 1.5em;
 }
 
+::selection {
+    background-color: #0099bb;
+    color: white;
+}
+
 a {
     color: #0099bb;
 }

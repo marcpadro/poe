@@ -327,7 +327,7 @@ function get_image($path) {
 		
 		$('#text').load('getText.php');
 
-	    }, 2000);
+	    }, 1000);
     });
     
     

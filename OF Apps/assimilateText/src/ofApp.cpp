@@ -284,9 +284,11 @@ void ofApp::feed(){
         dest = rand_pos;
         current = rand_value;
         
-        rand_pos += (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
-        rand_pos %= template_length;
-        rand_value += (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+        int value = rand_pos + (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
+        rand_pos = (value >= template_length) ? template_length : (value < 0) ? 0 : value;
+        
+        value = rand_value + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+        rand_value = (value < 1) ? 1 : value;
     }
     else {
         
