@@ -164,11 +164,13 @@ void ofApp::feed(unsigned char* result) {
         pix_value[1] = rand_value[1];
         pix_value[2] = rand_value[2];
         
-        rand_pos += (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
-        rand_pos += ((std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2) * templateImagePixels.getWidth();
-        rand_pos %= dataset.pix_num;
+        int value = rand_pos + (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
+        value += ((std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2) * templateImagePixels.getWidth();
         
-        int value = rand_value[0] + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
+        rand_pos = (value >= dataset.pix_num) ? dataset.pix_num - 1 : (value < 0) ? 0 : value;
+        
+        
+        value = rand_value[0] + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
         rand_value[0] = ( value > 255 ) ? 255 : (value < 0 ) ? 0 : value;
         
         value = rand_value[1] + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;
@@ -178,8 +180,12 @@ void ofApp::feed(unsigned char* result) {
         rand_value[2] = ( value > 255 ) ? 255 : (value < 0 ) ? 0 : value;
         
         if (++rand_count >= RAND_RESET) {
-            rand_pos_center += (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
-            rand_pos_center += ((std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2) * templateImagePixels.getWidth();
+            
+            value = rand_pos_center + (std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2;
+            value += ((std::rand() % RAND_POS_RANGE) - RAND_POS_RANGE/2) * templateImagePixels.getWidth();
+            
+            rand_pos_center = (value >= dataset.pix_num) ? dataset.pix_num - 1 : (value < 0) ? 0 : value;
+            
             rand_pos = rand_pos_center;
             
             value = rand_value_center[0] + (std::rand() % RAND_VALUE_RANGE) - RAND_VALUE_RANGE/2;

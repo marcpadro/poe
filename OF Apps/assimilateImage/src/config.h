@@ -17,7 +17,7 @@
 
 #define RAND_POS_RANGE 3
 
-#define RAND_VALUE_RANGE 3
+#define RAND_VALUE_RANGE 11
 
 #define RAND_RESET 30
 
